@@ -9,13 +9,13 @@ from moviepy.editor import *
 
 ########################################### CLEAR FILES #####################################
 
-dir = './preVideo'
-for f in os.listdir(dir):
-    os.remove(os.path.join(dir, f))
+# dir = './preVideo'
+# for f in os.listdir(dir):
+#     os.remove(os.path.join(dir, f))
 
-dir2 = './video'
-for f in os.listdir(dir2):
-    os.remove(os.path.join(dir, f))
+# dir2 = './video'
+# for f in os.listdir(dir2):
+#     os.remove(os.path.join(dir, f))
 
 ########################################### KEYS ############################################
 
@@ -103,6 +103,7 @@ games = {
 ############################################ GENERAL ########################################
 
 index = 0
+durationsTab = []
 
 ############################################ Gotaga #########################################
 
@@ -114,17 +115,21 @@ gotagaResult = gotagaResponse.get('data')
 for element in gotagaResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationGotaga = int(element.get('duration'))
+    durationsTab.append(durationGotaga)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("gotaga discute avec les viewers et dit des dingueries")
+            f.write("Gotaga discute avec les viewers et dit des dingueries")
+        elif gameID == "509663":
+            f.write("Gotaga fais des dingueries durant l'event")
         else:
-            f.write("gotaga fait des dingueries sur " + games[gameID])
+            f.write("Gotaga fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################## Antoine Daniel ##################################
@@ -137,17 +142,21 @@ antoineResult = antoineResponse.get('data')
 for element in antoineResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationAntoine = element.get('duration')
+    durationsTab.append(durationAntoine)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Antoine fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("antoine discute avec les viewers et dit des dingueries")
+            f.write("Antoine discute avec les viewers et dit des dingueries")
         else:
-            f.write("antoine fait des dingueries sur " + games[gameID])
+            f.write("Antoine fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Jbzzed ##########################################
@@ -160,17 +169,21 @@ jbzzedResult = jbzzedResponse.get('data')
 for element in jbzzedResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationJbzzed = element.get('duration')
+    durationsTab.append(durationJbzzed)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Jbzzed fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("jbzzed discute avec les viewers et dit des dingueries")
+            f.write("Jbzzed discute avec les viewers et dit des dingueries")
         else:
-            f.write("jbzzed fait des dingueries sur " + games[gameID])
+            f.write("Jbzzed fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Kameto ##########################################
@@ -183,17 +196,21 @@ kametoResult = kametoResponse.get('data')
 for element in kametoResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationKameto = element.get('duration')
+    durationsTab.append(durationKameto)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Kameto fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("kameto discute avec les viewers et dit des dingueries")
+            f.write("Kameto discute avec les viewers et dit des dingueries")
         else:
-            f.write("kameto fait des dingueries sur " + games[gameID])
+            f.write("Kameto fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Lebouseuh #######################################
@@ -204,17 +221,23 @@ lebouseuhRequest = requests.get(lebouseuhClip, headers=headers)
 lebouseuhResponse = lebouseuhRequest.json()
 lebouseuhResult = lebouseuhResponse.get('data')
 for element in lebouseuhResult:
+    url = element.get('url')
+    gameID = element.get('game_id')
+    durationLebouseuh = element.get('duration')
+    durationsTab.append(durationLebouseuh)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Lebouseuh fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("lebouseuh discute avec les viewers et dit des dingueries")
+            f.write("Lebouseuh discute avec les viewers et dit des dingueries")
         else:
-            f.write("lebouseuh fait des dingueries sur " + games[gameID])
+            f.write("Lebouseuh fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Valouz ##########################################
@@ -226,17 +249,22 @@ valouzResponse = valouzRequest.json()
 valouzResult = valouzResponse.get('data')
 for element in valouzResult:
     url = element.get('url')
+    gameID = element.get('game_id')
+    durationValouz = element.get('duration')
+    durationsTab.append(durationValouz)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Valouz fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("valouz discute avec les viewers et dit des dingueries")
+            f.write("Valouz discute avec les viewers et dit des dingueries")
         else:
-            f.write("valouz fait des dingueries sur " + games[gameID])
+            f.write("Valouz fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Domingo #########################################
@@ -249,17 +277,21 @@ domingoResult = domingoResponse.get('data')
 for element in domingoResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationDomingo = element.get('duration')
+    durationsTab.append(durationDomingo)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Domingo fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("domingo discute avec les viewers et dit des dingueries")
+            f.write("Domingo discute avec les viewers et dit des dingueries")
         else:
-            f.write("domingo fait des dingueries sur " + games[gameID])
+            f.write("Domingo fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Squeezie ########################################
@@ -272,17 +304,21 @@ squeezieResult = squeezieResponse.get('data')
 for element in squeezieResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationSqueezie = element.get('duration')
+    durationsTab.append(durationSqueezie)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Squeezie fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("squeezie discute avec les viewers et dit des dingueries")
+            f.write("Squeezie discute avec les viewers et dit des dingueries")
         else:
-            f.write("squeezie fait des dingueries sur " + games[gameID])
+            f.write("Squeezie fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Ponce ###########################################
@@ -295,17 +331,21 @@ ponceResult = ponceResponse.get('data')
 for element in ponceResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationPonce = element.get('duration')
+    durationsTab.append(durationPonce)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Ponce fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("ponce discute avec les viewers et dit des dingueries")
+            f.write("Ponce discute avec les viewers et dit des dingueries")
         else:
-            f.write("ponce fait des dingueries sur " + games[gameID])
+            f.write("Ponce fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################## Billy ###########################################
@@ -318,17 +358,21 @@ billyResult = billyResponse.get('data')
 for element in billyResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationBilly = element.get('duration')
+    durationsTab.append(durationBilly)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Billy fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("billy discute avec les viewers et dit des dingueries")
+            f.write("Billy discute avec les viewers et dit des dingueries")
         else:
-            f.write("billy fait des dingueries sur " + games[gameID])
+            f.write("Billy fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Amine ###########################################
@@ -341,17 +385,21 @@ amineResult = amineResponse.get('data')
 for element in amineResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationAmine = element.get('duration')
+    durationsTab.append(durationAmine)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Amine fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("amine discute avec les viewers et dit des dingueries")
+            f.write("Amine discute avec les viewers et dit des dingueries")
         else:
-            f.write("amine fait des dingueries sur " + games[gameID])
+            f.write("Amine fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Krl #############################################
@@ -364,17 +412,21 @@ krlResult = krlResponse.get('data')
 for element in krlResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationKrl = element.get('duration')
+    durationsTab.append(durationKrl)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Krl fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("krl discute avec les viewers et dit des dingueries")
+            f.write("Krl discute avec les viewers et dit des dingueries")
         else:
-            f.write("krl fait des dingueries sur " + games[gameID])
+            f.write("Krl fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Melchior ########################################
@@ -387,17 +439,21 @@ melchiorResult = melchiorResponse.get('data')
 for element in melchiorResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationMelchior = element.get('duration')
+    durationsTab.append(durationMelchior)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Melchior fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("melchior discute avec les viewers et dit des dingueries")
+            f.write("Melchior discute avec les viewers et dit des dingueries")
         else:
-            f.write("melchior fait des dingueries sur " + games[gameID])
+            f.write("Melchior fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Linca ###########################################
@@ -410,17 +466,21 @@ lincaResult = lincaResponse.get('data')
 for element in lincaResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationLinca = element.get('duration')
+    durationsTab.append(durationLinca)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Linca fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("linca discute avec les viewers et dit des dingueries")
+            f.write("Linca discute avec les viewers et dit des dingueries")
         else:
-            f.write("linca fait des dingueries sur " + games[gameID])
+            f.write("Linca fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Maghla ##########################################
@@ -433,17 +493,21 @@ maghlaResult = maghlaResponse.get('data')
 for element in maghlaResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationMaghla = element.get('duration')
+    durationsTab.append(durationMaghla)
     if url == "":
         index = index
+    elif gameID == "509663":
+        f.write("Gotaga fais des dingueries durant l'event")
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("maghla discute avec les viewers et dit des dingueries")
+            f.write("Maghla discute avec les viewers et dit des dingueries")
         else:
-            f.write("maghla fait des dingueries sur " + games[gameID])
+            f.write("Maghla fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Locklear ########################################
@@ -456,17 +520,19 @@ locklearResult = locklearResponse.get('data')
 for element in locklearResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationLocklear = element.get('duration')
+    durationsTab.append(durationLocklear)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("locklear discute avec les viewers et dit des dingueries")
+            f.write("Locklear discute avec les viewers et dit des dingueries")
         else:
-            f.write("locklear fait des dingueries sur " + games[gameID])
+            f.write("Locklear fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Lutti ###########################################
@@ -479,17 +545,19 @@ luttiResult = luttiResponse.get('data')
 for element in luttiResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationLutti = element.get('duration')
+    durationsTab.append(durationLutti)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("lutti discute avec les viewers et dit des dingueries")
+            f.write("Lutti discute avec les viewers et dit des dingueries")
         else:
-            f.write("lutti fait des dingueries sur " + games[gameID])
+            f.write("Lutti fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Papesan #########################################
@@ -502,17 +570,19 @@ papesanResult = papesanResponse.get('data')
 for element in papesanResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationPapesan = element.get('duration')
+    durationsTab.append(durationPapesan)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("papesan discute avec les viewers et dit des dingueries")
+            f.write("Papesan discute avec les viewers et dit des dingueries")
         else:
-            f.write("papesan fait des dingueries sur " + games[gameID])
+            f.write("Papesan fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Wankilstudio ####################################
@@ -525,17 +595,19 @@ wankilstudioResult = wankilstudioResponse.get('data')
 for element in wankilstudioResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationWankil = element.get('duration')
+    durationsTab.append(durationWankil)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("wankil discute avec les viewers et dit des dingueries")
+            f.write("Wankil discute avec les viewers et dit des dingueries")
         else:
-            f.write("wankil fait des dingueries sur " + games[gameID])
+            f.write("Wankil fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Mickalow ########################################
@@ -548,17 +620,19 @@ mickalowResult = mickalowResponse.get('data')
 for element in mickalowResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationMickalow = element.get('duration')
+    durationsTab.append(durationMickalow)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("mickalow discute avec les viewers et dit des dingueries")
+            f.write("Mickalow discute avec les viewers et dit des dingueries")
         else:
-            f.write("mickalow fait des dingueries sur " + games[gameID])
+            f.write("Mickalow fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Jeel ############################################
@@ -571,17 +645,19 @@ jeelResult = jeelResponse.get('data')
 for element in jeelResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationJeel = element.get('duration')
+    durationsTab.append(durationJeel)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("jeel discute avec les viewers et dit des dingueries")
+            f.write("Jeel discute avec les viewers et dit des dingueries")
         else:
-            f.write("jeel fait des dingueries sur " + games[gameID])
+            f.write("Jeel fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Ultia ###########################################
@@ -594,17 +670,19 @@ ultiaResult = ultiaResponse.get('data')
 for element in ultiaResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationUltia = element.get('duration')
+    durationsTab.append(durationUltia)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("ultia discute avec les viewers et dit des dingueries")
+            f.write("Ultia discute avec les viewers et dit des dingueries")
         else:
-            f.write("ultia fait des dingueries sur " + games[gameID])
+            f.write("Ultia fait des dingueries sur " + games[gameID])
         f.close()
 
 ########################################### Sardoche ########################################
@@ -617,16 +695,23 @@ sardResult = sardResponse.get('data')
 for element in sardResult:
     url = element.get('url')
     gameID = element.get('game_id')
+    durationSard = element.get('duration')
+    durationsTab.append(durationSard)
     if url == "":
         index = index
     else:
         index = index + 1
         ClipDl = os.system(
             "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./preVideo/video" + str(index) + ".txt", "w+")
+        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
         if gameID == "417752" or gameID == "509658":
-            f.write("sardoche discute avec les viewers et dit des dingueries")
+            f.write("Sardoche discute avec les viewers et dit des dingueries")
         else:
-            f.write("sardoche fait des dingueries sur " + games[gameID])
+            f.write("Sardoche fait des dingueries sur " + games[gameID])
         f.close()
 
+for duration in durationsTab:
+    durationAdd = 0
+    while durationAdd <= 60:
+        durationAdd = durationAdd + duration
+    durationAdd = 0
