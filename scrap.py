@@ -8,15 +8,13 @@ import shutil
 from moviepy.editor import *
 
 ########################################### CLEAR FILES #####################################
-
-# dir = './preVideo'
+#dir = './preVideo'
 # for f in os.listdir(dir):
 #     os.remove(os.path.join(dir, f))
-
-# dir2 = './video'
+     
+#dir2 = './video'
 # for f in os.listdir(dir2):
 #     os.remove(os.path.join(dir, f))
-
 ########################################### KEYS ############################################
 
 headers = CaseInsensitiveDict()
@@ -103,7 +101,7 @@ games = {
 ############################################ GENERAL ########################################
 
 index = 0
-durationsTab = []
+duration = 0
 
 ############################################ Gotaga #########################################
 
@@ -115,8 +113,6 @@ gotagaResult = gotagaResponse.get('data')
 for element in gotagaResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationGotaga = int(element.get('duration'))
-    durationsTab.append(durationGotaga)
     if url == "":
         index = index
     else:
@@ -131,6 +127,13 @@ for element in gotagaResult:
         else:
             f.write("Gotaga fait des dingueries sur " + games[gameID])
         f.close()
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
+    
 
 ########################################## Antoine Daniel ##################################
 
@@ -142,8 +145,6 @@ antoineResult = antoineResponse.get('data')
 for element in antoineResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationAntoine = element.get('duration')
-    durationsTab.append(durationAntoine)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -158,6 +159,12 @@ for element in antoineResult:
         else:
             f.write("Antoine fait des dingueries sur " + games[gameID])
         f.close()
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 
 ########################################### Jbzzed ##########################################
 
@@ -169,8 +176,6 @@ jbzzedResult = jbzzedResponse.get('data')
 for element in jbzzedResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationJbzzed = element.get('duration')
-    durationsTab.append(durationJbzzed)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -185,7 +190,12 @@ for element in jbzzedResult:
         else:
             f.write("Jbzzed fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Kameto ##########################################
 
 kametoClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + kametoID + "&started_at=" + \
@@ -196,8 +206,6 @@ kametoResult = kametoResponse.get('data')
 for element in kametoResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationKameto = element.get('duration')
-    durationsTab.append(durationKameto)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -212,7 +220,12 @@ for element in kametoResult:
         else:
             f.write("Kameto fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Lebouseuh #######################################
 
 lebouseuhClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + lebouseuhID + "&started_at=" + \
@@ -223,8 +236,6 @@ lebouseuhResult = lebouseuhResponse.get('data')
 for element in lebouseuhResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationLebouseuh = element.get('duration')
-    durationsTab.append(durationLebouseuh)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -239,7 +250,12 @@ for element in lebouseuhResult:
         else:
             f.write("Lebouseuh fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Valouz ##########################################
 
 valouzClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + valouzID + "&started_at=" + \
@@ -250,8 +266,6 @@ valouzResult = valouzResponse.get('data')
 for element in valouzResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationValouz = element.get('duration')
-    durationsTab.append(durationValouz)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -266,7 +280,12 @@ for element in valouzResult:
         else:
             f.write("Valouz fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Domingo #########################################
 
 domingoClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + domingoID + "&started_at=" + \
@@ -277,8 +296,6 @@ domingoResult = domingoResponse.get('data')
 for element in domingoResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationDomingo = element.get('duration')
-    durationsTab.append(durationDomingo)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -293,7 +310,12 @@ for element in domingoResult:
         else:
             f.write("Domingo fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Squeezie ########################################
 
 squeezieClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + squeezieID + "&started_at=" + \
@@ -304,8 +326,6 @@ squeezieResult = squeezieResponse.get('data')
 for element in squeezieResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationSqueezie = element.get('duration')
-    durationsTab.append(durationSqueezie)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -320,7 +340,12 @@ for element in squeezieResult:
         else:
             f.write("Squeezie fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Ponce ###########################################
 
 ponceClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + ponceID + "&started_at=" + \
@@ -331,8 +356,6 @@ ponceResult = ponceResponse.get('data')
 for element in ponceResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationPonce = element.get('duration')
-    durationsTab.append(durationPonce)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -347,7 +370,12 @@ for element in ponceResult:
         else:
             f.write("Ponce fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################## Billy ###########################################
 
 billyClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + billyID + "&started_at=" + \
@@ -358,8 +386,6 @@ billyResult = billyResponse.get('data')
 for element in billyResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationBilly = element.get('duration')
-    durationsTab.append(durationBilly)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -374,7 +400,12 @@ for element in billyResult:
         else:
             f.write("Billy fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Amine ###########################################
 
 amineClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + amineID + "&started_at=" + \
@@ -385,8 +416,6 @@ amineResult = amineResponse.get('data')
 for element in amineResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationAmine = element.get('duration')
-    durationsTab.append(durationAmine)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -401,7 +430,12 @@ for element in amineResult:
         else:
             f.write("Amine fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Krl #############################################
 
 krlClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + krlID + "&started_at=" + \
@@ -412,8 +446,6 @@ krlResult = krlResponse.get('data')
 for element in krlResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationKrl = element.get('duration')
-    durationsTab.append(durationKrl)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -428,7 +460,12 @@ for element in krlResult:
         else:
             f.write("Krl fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Melchior ########################################
 
 melchiorClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + melchiorID + "&started_at=" + \
@@ -439,8 +476,6 @@ melchiorResult = melchiorResponse.get('data')
 for element in melchiorResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationMelchior = element.get('duration')
-    durationsTab.append(durationMelchior)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -455,7 +490,12 @@ for element in melchiorResult:
         else:
             f.write("Melchior fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Linca ###########################################
 
 lincaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + lincaID + "&started_at=" + \
@@ -466,8 +506,6 @@ lincaResult = lincaResponse.get('data')
 for element in lincaResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationLinca = element.get('duration')
-    durationsTab.append(durationLinca)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -482,7 +520,12 @@ for element in lincaResult:
         else:
             f.write("Linca fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Maghla ##########################################
 
 maghlaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + maghlaID + "&started_at=" + \
@@ -493,8 +536,6 @@ maghlaResult = maghlaResponse.get('data')
 for element in maghlaResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationMaghla = element.get('duration')
-    durationsTab.append(durationMaghla)
     if url == "":
         index = index
     elif gameID == "509663":
@@ -509,7 +550,12 @@ for element in maghlaResult:
         else:
             f.write("Maghla fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Locklear ########################################
 
 locklearClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + locklearID + "&started_at=" + \
@@ -520,8 +566,6 @@ locklearResult = locklearResponse.get('data')
 for element in locklearResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationLocklear = element.get('duration')
-    durationsTab.append(durationLocklear)
     if url == "":
         index = index
     else:
@@ -534,7 +578,12 @@ for element in locklearResult:
         else:
             f.write("Locklear fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Lutti ###########################################
 
 luttiClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + luttiID + "&started_at=" + \
@@ -545,8 +594,6 @@ luttiResult = luttiResponse.get('data')
 for element in luttiResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationLutti = element.get('duration')
-    durationsTab.append(durationLutti)
     if url == "":
         index = index
     else:
@@ -559,7 +606,12 @@ for element in luttiResult:
         else:
             f.write("Lutti fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Papesan #########################################
 
 papesanClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + papesanID + "&started_at=" + \
@@ -570,8 +622,6 @@ papesanResult = papesanResponse.get('data')
 for element in papesanResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationPapesan = element.get('duration')
-    durationsTab.append(durationPapesan)
     if url == "":
         index = index
     else:
@@ -584,7 +634,12 @@ for element in papesanResult:
         else:
             f.write("Papesan fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Wankilstudio ####################################
 
 wankilstudioClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + wankilstudioID + "&started_at=" + \
@@ -595,8 +650,6 @@ wankilstudioResult = wankilstudioResponse.get('data')
 for element in wankilstudioResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationWankil = element.get('duration')
-    durationsTab.append(durationWankil)
     if url == "":
         index = index
     else:
@@ -609,7 +662,12 @@ for element in wankilstudioResult:
         else:
             f.write("Wankil fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Mickalow ########################################
 
 mickalowClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + mickalowID + "&started_at=" + \
@@ -620,8 +678,6 @@ mickalowResult = mickalowResponse.get('data')
 for element in mickalowResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationMickalow = element.get('duration')
-    durationsTab.append(durationMickalow)
     if url == "":
         index = index
     else:
@@ -634,7 +690,12 @@ for element in mickalowResult:
         else:
             f.write("Mickalow fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Jeel ############################################
 
 jeelClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + jeelID + "&started_at=" + \
@@ -645,8 +706,6 @@ jeelResult = jeelResponse.get('data')
 for element in jeelResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationJeel = element.get('duration')
-    durationsTab.append(durationJeel)
     if url == "":
         index = index
     else:
@@ -659,7 +718,12 @@ for element in jeelResult:
         else:
             f.write("Jeel fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Ultia ###########################################
 
 ultiaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + ultiaID + "&started_at=" + \
@@ -670,8 +734,6 @@ ultiaResult = ultiaResponse.get('data')
 for element in ultiaResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationUltia = element.get('duration')
-    durationsTab.append(durationUltia)
     if url == "":
         index = index
     else:
@@ -684,7 +746,12 @@ for element in ultiaResult:
         else:
             f.write("Ultia fait des dingueries sur " + games[gameID])
         f.close()
-
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
 ########################################### Sardoche ########################################
 
 sardClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + sardID + "&started_at=" + \
@@ -695,8 +762,6 @@ sardResult = sardResponse.get('data')
 for element in sardResult:
     url = element.get('url')
     gameID = element.get('game_id')
-    durationSard = element.get('duration')
-    durationsTab.append(durationSard)
     if url == "":
         index = index
     else:
@@ -709,9 +774,9 @@ for element in sardResult:
         else:
             f.write("Sardoche fait des dingueries sur " + games[gameID])
         f.close()
-
-for duration in durationsTab:
-    durationAdd = 0
-    while durationAdd <= 60:
-        durationAdd = durationAdd + duration
-    durationAdd = 0
+        clip = VideoFileClip("video/video"+str(index)+".mp4")
+        duration = duration + int(clip.duration)
+        if duration >= 62:
+            os.system("python capcut.py")
+            index = 0
+            duration = 0
