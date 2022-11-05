@@ -48,11 +48,6 @@ mickalowID = "30709418"
 ultiaID = "68594999"
 sardID = "50795214"
 
-number_video = len(os.listdir("./video"))
-for i in range(number_video):
-    os.system("del /s /q video" + str(i+1) + ".mp4")
-    os.system("del /s /q video" + str(i+1) + ".txt")
-
 ############################################ GAMES IDS ######################################
 
 games = {
@@ -144,7 +139,7 @@ for element in gotagaResult:
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python montage.py")
+            os.system("python capcut.py")
             duration = 0
             index = 0
             number_video = len(os.listdir("./video"))
@@ -184,7 +179,7 @@ for element in antoineResult:
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python montage.py")
+            os.system("python capcut.py")
             duration = 0
             index = 0
             number_video = len(os.listdir("./video"))
@@ -224,7 +219,7 @@ for element in jbzzedResult:
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python montage.py")
+            os.system("python capcut.py")
             duration = 0 
             number_video = len(os.listdir("./video"))
             for i in range(number_video):
@@ -263,7 +258,7 @@ for element in kametoResult:
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python montage.py")
+            os.system("python capcut.py")
             duration = 0
             index = 0
             number_video = len(os.listdir("./video"))
@@ -303,7 +298,7 @@ for element in lebouseuhResult:
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python montage.py")
+            os.system("python capcut.py")
             duration = 0
             index = 0
             number_video = len(os.listdir("./video"))
