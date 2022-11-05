@@ -4,17 +4,8 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import datetime
 import os
-import shutil
 from moviepy.editor import *
 
-########################################### CLEAR FILES #####################################
-#dir = './preVideo'
-# for f in os.listdir(dir):
-#     os.remove(os.path.join(dir, f))
-     
-#dir2 = './video'
-# for f in os.listdir(dir2):
-#     os.remove(os.path.join(dir, f))
 ########################################### KEYS ############################################
 
 headers = CaseInsensitiveDict()
@@ -47,18 +38,20 @@ squeezieID = "52130765"
 ponceID = "50597026"
 billyID = "407837457"
 amineID = "407388596"
-krlID = "129289579"
 melchiorID = "85977125"
 lincaID = "144395004"
-maghlaID = "131215608"
 locklearID = "137347549"
 luttiID = "89047775"
 papesanID = "485818115"
 wankilstudioID = "31289086"
 mickalowID = "30709418"
-jeelID = "114119743"
 ultiaID = "68594999"
 sardID = "50795214"
+
+number_video = len(os.listdir("./video"))
+for i in range(number_video):
+    os.system("del /s /q video" + str(i+1) + ".mp4")
+    os.system("del /s /q video" + str(i+1) + ".txt")
 
 ############################################ GAMES IDS ######################################
 
@@ -95,8 +88,26 @@ games = {
     "1311006114": "Father's Day",
     "32982": "GTA",
     "494082": "Visage",
-    "493057": "PUBG"
+    "493057": "PUBG",
+    "488190": "Poker",
+    "491168": "Clash Royal",
 }
+
+dir = './video'
+for f in os.listdir(dir):
+    os.remove(os.path.join(dir, f))
+dir2 = './videoTitles'
+for f in os.listdir(dir2):
+    os.remove(os.path.join(dir2, f))
+dir3 = './result'
+for f in os.listdir(dir3):
+    os.remove(os.path.join(dir3, f))
+dir4 = './tmp'
+for f in os.listdir(dir4):
+    os.remove(os.path.join(dir4, f))
+dir5 = './final'
+for f in os.listdir(dir5):
+    os.remove(os.path.join(dir5, f))
 
 ############################################ GENERAL ########################################
 
@@ -118,22 +129,28 @@ for element in gotagaResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Gotaga discute avec les viewers et dit des dingueries")
-        elif gameID == "509663":
-            f.write("Gotaga fais des dingueries durant l'event")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Gotaga discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Gotaga fais des dingueries durant l'event")
+            else:
+                f.write("Gotaga fait des dingueries sur " + games[gameID])
         else:
-            f.write("Gotaga fait des dingueries sur " + games[gameID])
+            f.write("Gotaga fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
+            os.system("python montage.py")
             duration = 0
-    
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q /f video" + str(i+1) + ".mp4")
+                os.system("del /s /q /f video" + str(i+1) + ".txt")
 
 ########################################## Antoine Daniel ##################################
 
@@ -152,19 +169,28 @@ for element in antoineResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Antoine discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Antoine discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Antoine fais des dingueries durant l'event")
+            else:
+                f.write("Antoine fait des dingueries sur " + games[gameID])
         else:
-            f.write("Antoine fait des dingueries sur " + games[gameID])
+            f.write("Antoine fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
+            os.system("python montage.py")
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
 
 ########################################### Jbzzed ##########################################
 
@@ -183,19 +209,28 @@ for element in jbzzedResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Jbzzed discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Jbzzed discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Jbzzed fais des dingueries durant l'event")
+            else:
+                f.write("Jbzzed fait des dingueries sur " + games[gameID])
         else:
-            f.write("Jbzzed fait des dingueries sur " + games[gameID])
+            f.write("Jbzzed fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
-            duration = 0
+            os.system("python montage.py")
+            duration = 0 
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Kameto ##########################################
 
 kametoClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + kametoID + "&started_at=" + \
@@ -213,19 +248,29 @@ for element in kametoResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Kameto discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Kameto discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Kameto fais des dingueries durant l'event")
+            else:
+                f.write("Kameto fait des dingueries sur " + games[gameID])
         else:
-            f.write("Kameto fait des dingueries sur " + games[gameID])
+            f.write("Kameto fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
+            os.system("python montage.py")
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+                
 ########################################### Lebouseuh #######################################
 
 lebouseuhClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + lebouseuhID + "&started_at=" + \
@@ -243,19 +288,29 @@ for element in lebouseuhResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Lebouseuh discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Lebouseuh discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Lebouseuh fais des dingueries durant l'event")
+            else:
+                f.write("Lebouseuh fait des dingueries sur " + games[gameID])
         else:
-            f.write("Lebouseuh fait des dingueries sur " + games[gameID])
+            f.write("Lebouseuh fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
+            os.system("python montage.py")
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Valouz ##########################################
 
 valouzClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + valouzID + "&started_at=" + \
@@ -273,19 +328,29 @@ for element in valouzResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Valouz discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Valouz discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Valouz fais des dingueries durant l'event")
+            else:
+                f.write("Valouz fait des dingueries sur " + games[gameID])
         else:
-            f.write("Valouz fait des dingueries sur " + games[gameID])
+            f.write("Valouz fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Domingo #########################################
 
 domingoClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + domingoID + "&started_at=" + \
@@ -303,19 +368,29 @@ for element in domingoResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Domingo discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Domingo discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Domingo fais des dingueries durant l'event")
+            else:
+                f.write("Domingo fait des dingueries sur " + games[gameID])
         else:
-            f.write("Domingo fait des dingueries sur " + games[gameID])
+            f.write("Domingo fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Squeezie ########################################
 
 squeezieClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + squeezieID + "&started_at=" + \
@@ -333,19 +408,29 @@ for element in squeezieResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Squeezie discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Squeezie discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Squeezie fais des dingueries durant l'event")
+            else:
+                f.write("Squeezie fait des dingueries sur " + games[gameID])
         else:
-            f.write("Squeezie fait des dingueries sur " + games[gameID])
+            f.write("Squeezie fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Ponce ###########################################
 
 ponceClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + ponceID + "&started_at=" + \
@@ -363,19 +448,29 @@ for element in ponceResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Ponce discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Ponce discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Ponce fais des dingueries durant l'event")
+            else:
+                f.write("Ponce fait des dingueries sur " + games[gameID])
         else:
-            f.write("Ponce fait des dingueries sur " + games[gameID])
+            f.write("Ponce fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################## Billy ###########################################
 
 billyClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + billyID + "&started_at=" + \
@@ -393,19 +488,29 @@ for element in billyResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Billy discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Billy discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Billy fais des dingueries durant l'event")
+            else:
+                f.write("Billy fait des dingueries sur " + games[gameID])
         else:
-            f.write("Billy fait des dingueries sur " + games[gameID])
+            f.write("Billy fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Amine ###########################################
 
 amineClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + amineID + "&started_at=" + \
@@ -423,49 +528,30 @@ for element in amineResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Amine discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Amine discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Amine fais des dingueries durant l'event")
+            else:
+                f.write("Amine fait des dingueries sur " + games[gameID])
         else:
-            f.write("Amine fait des dingueries sur " + games[gameID])
+            f.write("Amine fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
-########################################### Krl #############################################
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+                
 
-krlClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + krlID + "&started_at=" + \
-    yesterday7RFC3339 + "&ended_at=" + todayRFC3339 + "&first=1"
-krlRequest = requests.get(krlClip, headers=headers)
-krlResponse = krlRequest.json()
-krlResult = krlResponse.get('data')
-for element in krlResult:
-    url = element.get('url')
-    gameID = element.get('game_id')
-    if url == "":
-        index = index
-    elif gameID == "509663":
-        f.write("Krl fais des dingueries durant l'event")
-    else:
-        index = index + 1
-        ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Krl discute avec les viewers et dit des dingueries")
-        else:
-            f.write("Krl fait des dingueries sur " + games[gameID])
-        f.close()
-        clip = VideoFileClip("video/video"+str(index)+".mp4")
-        duration = duration + int(clip.duration)
-        if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
-            duration = 0
 ########################################### Melchior ########################################
 
 melchiorClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + melchiorID + "&started_at=" + \
@@ -483,19 +569,29 @@ for element in melchiorResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Melchior discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Melchior discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Melchior fais des dingueries durant l'event")
+            else:
+                f.write("Melchior fait des dingueries sur " + games[gameID])
         else:
-            f.write("Melchior fait des dingueries sur " + games[gameID])
+            f.write("Melchior fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Linca ###########################################
 
 lincaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + lincaID + "&started_at=" + \
@@ -513,49 +609,29 @@ for element in lincaResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Linca discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Linca discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Linca fais des dingueries durant l'event")
+            else:
+                f.write("Linca fait des dingueries sur " + games[gameID])
         else:
-            f.write("Linca fait des dingueries sur " + games[gameID])
+            f.write("Linca fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
-########################################### Maghla ##########################################
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
 
-maghlaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + maghlaID + "&started_at=" + \
-    yesterday7RFC3339 + "&ended_at=" + todayRFC3339 + "&first=1"
-maghlaRequest = requests.get(maghlaClip, headers=headers)
-maghlaResponse = maghlaRequest.json()
-maghlaResult = maghlaResponse.get('data')
-for element in maghlaResult:
-    url = element.get('url')
-    gameID = element.get('game_id')
-    if url == "":
-        index = index
-    elif gameID == "509663":
-        f.write("Gotaga fais des dingueries durant l'event")
-    else:
-        index = index + 1
-        ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Maghla discute avec les viewers et dit des dingueries")
-        else:
-            f.write("Maghla fait des dingueries sur " + games[gameID])
-        f.close()
-        clip = VideoFileClip("video/video"+str(index)+".mp4")
-        duration = duration + int(clip.duration)
-        if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
-            duration = 0
 ########################################### Locklear ########################################
 
 locklearClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + locklearID + "&started_at=" + \
@@ -571,19 +647,29 @@ for element in locklearResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Locklear discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Locklear discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Locklear fais des dingueries durant l'event")
+            else:
+                f.write("Locklear fait des dingueries sur " + games[gameID])
         else:
-            f.write("Locklear fait des dingueries sur " + games[gameID])
+            f.write("Locklear fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Lutti ###########################################
 
 luttiClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + luttiID + "&started_at=" + \
@@ -599,19 +685,29 @@ for element in luttiResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Lutti discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Lutti discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Lutti fais des dingueries durant l'event")
+            else:
+                f.write("Lutti fait des dingueries sur " + games[gameID])
         else:
-            f.write("Lutti fait des dingueries sur " + games[gameID])
+            f.write("Lutti fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Papesan #########################################
 
 papesanClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + papesanID + "&started_at=" + \
@@ -627,19 +723,29 @@ for element in papesanResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Papesan discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Papesan discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Papesan fais des dingueries durant l'event")
+            else:
+                f.write("Papesan fait des dingueries sur " + games[gameID])
         else:
-            f.write("Papesan fait des dingueries sur " + games[gameID])
+            f.write("Papesan fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Wankilstudio ####################################
 
 wankilstudioClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + wankilstudioID + "&started_at=" + \
@@ -655,19 +761,29 @@ for element in wankilstudioResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Wankil discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Wankil discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Wankil fais des dingueries durant l'event")
+            else:
+                f.write("Wankil fait des dingueries sur " + games[gameID])
         else:
-            f.write("Wankil fait des dingueries sur " + games[gameID])
+            f.write("Wankil fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Mickalow ########################################
 
 mickalowClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + mickalowID + "&started_at=" + \
@@ -683,47 +799,29 @@ for element in mickalowResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Mickalow discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Mickalow discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Mickalow fais des dingueries durant l'event")
+            else:
+                f.write("Mickalow fait des dingueries sur " + games[gameID])
         else:
-            f.write("Mickalow fait des dingueries sur " + games[gameID])
+            f.write("Mickalow fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
-########################################### Jeel ############################################
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
 
-jeelClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + jeelID + "&started_at=" + \
-    yesterday7RFC3339 + "&ended_at=" + todayRFC3339 + "&first=1"
-jeelRequest = requests.get(jeelClip, headers=headers)
-jeelResponse = jeelRequest.json()
-jeelResult = jeelResponse.get('data')
-for element in jeelResult:
-    url = element.get('url')
-    gameID = element.get('game_id')
-    if url == "":
-        index = index
-    else:
-        index = index + 1
-        ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
-        f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Jeel discute avec les viewers et dit des dingueries")
-        else:
-            f.write("Jeel fait des dingueries sur " + games[gameID])
-        f.close()
-        clip = VideoFileClip("video/video"+str(index)+".mp4")
-        duration = duration + int(clip.duration)
-        if duration >= 62:
-            os.system("python capcut.py")
-            index = 0
-            duration = 0
 ########################################### Ultia ###########################################
 
 ultiaClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + ultiaID + "&started_at=" + \
@@ -739,19 +837,29 @@ for element in ultiaResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Ultia discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Ultia discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Ultia fais des dingueries durant l'event")
+            else:
+                f.write("Ultia fait des dingueries sur " + games[gameID])
         else:
-            f.write("Ultia fait des dingueries sur " + games[gameID])
+            f.write("Ultia fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
+
 ########################################### Sardoche ########################################
 
 sardClip = "https://api.twitch.tv/helix/clips?broadcaster_id=" + sardID + "&started_at=" + \
@@ -767,16 +875,25 @@ for element in sardResult:
     else:
         index = index + 1
         ClipDl = os.system(
-            "twitch-dl download -q source --output ./preVideo/video" + str(index) + ".mp4 " + url)
+            "twitch-dl download -q source --overwrite --output ./video/video" + str(index) + ".mp4 " + url)
         f = open("./videoTitles/video" + str(index) + ".txt", "w+")
-        if gameID == "417752" or gameID == "509658":
-            f.write("Sardoche discute avec les viewers et dit des dingueries")
+        if gameID in games:
+            if gameID == "417752" or gameID == "509658":
+                f.write("Sardoche discute avec les viewers et dit des dingueries")
+            elif gameID == "509663":
+                f.write("Sardoche fais des dingueries durant l'event")
+            else:
+                f.write("Sardoche fait des dingueries sur " + games[gameID])
         else:
-            f.write("Sardoche fait des dingueries sur " + games[gameID])
+            f.write("Sardoche fou le zbeul")
         f.close()
         clip = VideoFileClip("video/video"+str(index)+".mp4")
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            index = 0
             duration = 0
+            index = 0
+            number_video = len(os.listdir("./video"))
+            for i in range(number_video):
+                os.system("del /s /q video" + str(i+1) + ".mp4")
+                os.system("del /s /q video" + str(i+1) + ".txt")
