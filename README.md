@@ -12,8 +12,9 @@ What you need to start the script:
 
 - Ffmpeg (add to PATH)
 - ImageMagick
+- MoviePy
 - Python 3
 
 ### Start up
 
-Execute ``python scrap.py``
+Execute ``pip install -r requirements.txt`` and ``python scrap.py``
