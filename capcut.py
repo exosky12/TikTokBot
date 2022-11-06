@@ -144,7 +144,7 @@ while number_video >= i:
       os.system("taskkill /f /im qemu-system-x86_64.exe")
       os.system("taskkill /f /im emulator.exe")
       os.system("del data.txt")
-      os.system("emulator -avd CapcutBot_API_33")
+      os.system("start emulator -avd CapcutBot_API_33")
       time.sleep(100)
     else:
       print("---> Verification passed !")
