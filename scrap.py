@@ -220,7 +220,8 @@ for element in jbzzedResult:
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            duration = 0 
+            duration = 0
+            index = 0
             number_video = len(os.listdir("./video"))
             for i in range(number_video):
                 os.system("del /s /q video" + str(i+1) + ".mp4")
