@@ -18,4 +18,4 @@ What you need to start the script:
 
 ### Start up
 
-Execute ``pip install -r requirements.txt`` and ``python scrap.py``
+Execute ``python scrap.py``
