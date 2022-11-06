@@ -86,6 +86,7 @@ games = {
     "493057": "PUBG",
     "488190": "Poker",
     "491168": "Clash Royal",
+    "": "Multiversus"
 }
 
 dir = './video'
@@ -220,7 +221,7 @@ for element in jbzzedResult:
         duration = duration + int(clip.duration)
         if duration >= 62:
             os.system("python capcut.py")
-            duration = 0
+            duration = 0 
             index = 0
             number_video = len(os.listdir("./video"))
             for i in range(number_video):
