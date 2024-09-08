@@ -92,7 +92,7 @@ mouse.click(Button.left)
 
 time.sleep(1)
 
-keyboard.type("C:/Users/jules/Desktop/TikTokBot-main/result")
+keyboard.type("C:/Users/USER/Desktop/TikTokBot-main/result")
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
