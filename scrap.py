@@ -9,8 +9,8 @@ from moviepy.editor import *
 ########################################### KEYS ############################################
 
 headers = CaseInsensitiveDict()
-headers["Authorization"] = "Bearer 22xe9dvwvecit9psaezne64420tzlv"
-headers["Client-Id"] = "s5v8v6wuj7kw0gbbstinfapqr3sdm7"
+headers["Authorization"] = # Add your env config
+headers["Client-Id"] =  # Add your env config
 
 ########################################### DAYS ############################################
 
